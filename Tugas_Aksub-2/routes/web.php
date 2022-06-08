@@ -20,5 +20,10 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', [InventoryController::class, 'index']);
-Route::get('/inv/add', [InventoryController::class, 'addItem']);
-Route::post('/inv/create', [InventoryController::class, 'createEntry']);
+Route::prefix('inv')->group(function() {
+    Route::get('/add', [InventoryController::class, 'addItem'])->name('item.add');
+    Route::get('/{id}/edit', [InventoryController::class, 'editItem'])->name('item.edit');
+    Route::post('/create', [InventoryController::class, 'createEntry'])->name('item.create');
+    Route::patch('/{id}/update', [InventoryController::class, 'updateEntry'])->name('item.update');
+    Route::delete('/{id}/delete', [InventoryController::class, 'deleteEntry'])->name('item.delete');
+});

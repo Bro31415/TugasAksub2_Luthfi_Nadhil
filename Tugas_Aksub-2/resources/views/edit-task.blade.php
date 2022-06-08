@@ -15,33 +15,34 @@
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-3">
-                    <form method="" action="">
+                    <form method="post" action="{{"/inv/{$id}/update"}}">
+                        @csrf
+                        @method('patch')
                         <h3 class="mb-3">Edit Task</h3>
                         <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
+                            <label for="item" class="form-label">Item</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                id="title"
-                                name="title"
-                                value="Title"
+                                id="item"
+                                name="item"
+                                value="{{$inventories->item}}"
                             />
                         </div>
                         <div class="mb-3">
-                            <label for="details" class="form-label"
-                                >Details</label
+                            <label for="qty" class="form-label"
+                                >Quantity</label
                             >
                             <textarea
-                                name="details"
-                                id="details"
+                                name="qty"
+                                id="qty"
                                 cols="30"
                                 rows="2"
                                 class="form-control"
-                            >
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut culpa assumenda odit eaque nam dolores commodi dignissimos, minus dolorem in accusantium, quia a delectus aliquam ex velit numquam fugiat saepe!</textarea
+                            >{{$inventories->qty}}</textarea
                             >
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="priority" class="form-label">
                                 Priority
                             </label>
@@ -54,7 +55,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut culpa assumenda odit
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="row justify-content-center">
                             <button type="submit" class="btn btn-primary">
                                 Submit
