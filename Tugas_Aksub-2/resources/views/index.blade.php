@@ -22,31 +22,34 @@
             <a href="/inv/add" class="btn btn-primary" type="submit">
                 Add New Item
             </a>
-
+            <a href="/" class="btn btn-primary">View All</a>
+            <a href="/inv/laptop " class="btn btn-primary">Laptops</a>
+            <a href="/inv/phone" class="btn btn-primary">Smartphones</a>
+            <a href="/inv/tv" class="btn btn-primary">TVs</a>
+            
             <div class="d-flex flex-wrap align-content-start mt-5">
                 
                 @foreach ($inventories as $inv)
                 <div class="card mb-4 me-4" style="width: 18rem">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <div class="h5 card-title">{{$inv->item}}</div>
+                            <div class="h5 card-title">{{$inv->item}} - {{$inv->category->name}}</div>
                         </div>
-                        <p class="card-text">
-                            {{$inv->qty}}
-                        </p>
+                        <p class="card-text">{{$inv->qty}}</p>
 
                         <div class="mt-3 d-flex">
                             <form method="post" action="{{route('item.delete', ['id'=>$inv->id])}}">
                                 @csrf
                                 @method('delete')
-                            <button type="submit" class ="btn btn-primary"> Done  </button> 
+                            <button type="submit" class ="btn btn-primary"> Out of Stock  </button> 
                             </form>
                             <a href="{{route('item.edit', ['id'=>$inv->id])}}"class="btn btn-warning ms-2">Edit</a>
                         </div>
                     </div>
                 </div>
+                @endforeach 
             </div>
-            @endforeach    
+               
         </div>
 
         <script

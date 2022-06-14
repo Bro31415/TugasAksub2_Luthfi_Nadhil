@@ -40,18 +40,18 @@
                             ></textarea>
                         </div>
                         <div class="mb-3">
-                            {{-- <label for="priority" class="form-label">
-                                Priority
-                            </label> --}}
-                            {{-- <select
-                                name="priority"
-                                id="priority"
+                            <label for="category" class="form-label">
+                                Category
+                            </label>
+                            <select
+                                name="category_id"
+                                id="category"
                                 class="form-select"
                             >
-                                <option selected value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
-                            </select> --}}
+                                @foreach ($categories as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="row justify-content-center">
                             <button type="submit" class="btn btn-primary">

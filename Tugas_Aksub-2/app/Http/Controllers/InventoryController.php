@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inventory;
+use App\Models\Category;
 
 class InventoryController extends Controller
 {
@@ -16,12 +17,16 @@ class InventoryController extends Controller
     }
 
     public function addItem(){
-        return view('add-task');
+
+        $categories = Category::all();
+
+        return view('add-task', compact('categories'));
     }
 
     public function createEntry(Request $request){
         
         Inventory::create([
+            'category_id'=> $request->category_id,
             'item' => $request->item, 
             'qty' => $request->qty,
         ]);
@@ -51,5 +56,28 @@ class InventoryController extends Controller
         $inventories -> delete();
 
         return redirect('/');
+    }
+
+    
+
+    public function sortLaptop(){
+        
+        $inventories = Inventory::where('category_id','=', 1)->get();
+
+        return view('index', compact('inventories'));
+    }
+
+    public function sortPhone(){
+        
+        $inventories = Inventory::where('category_id','=', 2)->get();
+
+        return view('index', compact('inventories'));
+    }
+
+    public function sortTv(){
+        
+        $inventories = Inventory::where('category_id','=', 3)->get();
+
+        return view('index', compact('inventories'));
     }
 }

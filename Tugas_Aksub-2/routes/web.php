@@ -26,4 +26,8 @@ Route::prefix('inv')->group(function() {
     Route::post('/create', [InventoryController::class, 'createEntry'])->name('item.create');
     Route::patch('/{id}/update', [InventoryController::class, 'updateEntry'])->name('item.update');
     Route::delete('/{id}/delete', [InventoryController::class, 'deleteEntry'])->name('item.delete');
+
+    Route::get('/laptop', [InventoryController::class, 'sortLaptop'])->name('sort.Laptop');
+    Route::get('/phone', [InventoryController::class, 'sortPhone']);
+    Route::get('/tv', [InventoryController::class, 'sortTv']);
 });
